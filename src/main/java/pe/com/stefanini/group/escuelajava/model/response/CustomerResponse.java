@@ -12,11 +12,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CustomerResponse {
-	
+
 	private Integer customerId;
-	private String  customerName;
-	private String  customerAddress;
+	private String customerName;
+	private String customerAddress;
 	private Integer documentType;
-	private String  documentNumber;
+	private String documentNumber;
 
 }
