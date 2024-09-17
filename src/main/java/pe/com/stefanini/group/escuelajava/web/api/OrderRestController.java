@@ -20,31 +20,31 @@ import pe.com.stefanini.group.escuelajava.service.OrderService;
 @RestController
 @RequestMapping("/api/v1")
 public class OrderRestController {
-	
+
 	@Autowired
 	private OrderService orderService;
-	
+
 	@GetMapping("/orders")
 	public ResponseEntity<Page<Order>> getAllOrdersToPage(
-			@RequestParam(required = false, defaultValue = "0")Integer page,
-			@RequestParam(required = false, defaultValue = "5") Integer size){
-			Pageable pageable = PageRequest.of(page, size);
-		Page<Order> order= orderService.getAllOrders(pageable);
+			@RequestParam(required = false, defaultValue = "0") Integer page,
+			@RequestParam(required = false, defaultValue = "5") Integer size) {
+		Pageable pageable = PageRequest.of(page, size);
+		Page<Order> order = orderService.getAllOrders(pageable);
 		return ResponseEntity.ok(order);
 	}
-	
+
 	@GetMapping("/orders/procedure")
-	public ResponseEntity<List<OrderResponse>> findAllProcedure(){
+	public ResponseEntity<List<OrderResponse>> findAllProcedure() {
 		List<OrderResponse> procedure = orderService.findByReporteOrdenesAtendidasStatus2();
 		return new ResponseEntity<>(procedure, HttpStatus.OK);
-		
+
 	}
-	
+
 	@GetMapping("/orders/view")
-	public ResponseEntity<List<OrderResponse>> findAllview(){
+	public ResponseEntity<List<OrderResponse>> findAllview() {
 		List<OrderResponse> procedure = orderService.findByViewReportOrderPendientesUltimosTresMesSatado1();
 		return new ResponseEntity<>(procedure, HttpStatus.OK);
-		
+
 	}
 
 }
