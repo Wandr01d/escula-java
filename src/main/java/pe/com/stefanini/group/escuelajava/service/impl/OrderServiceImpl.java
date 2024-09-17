@@ -15,20 +15,20 @@ import pe.com.stefanini.group.escuelajava.service.OrderService;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-	
+
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
 	@Autowired
 	private OrderMapper orderMapper;
-	
+
 	@Override
 	public Page<Order> getAllOrders(Pageable pageable) {
-	        return orderRepository.findAll(pageable);
+		return orderRepository.findAll(pageable);
 	}
 
 	@Override
-	public List<OrderResponse>  findByReporteOrdenesAtendidasStatus2() {
+	public List<OrderResponse> findByReporteOrdenesAtendidasStatus2() {
 		return orderMapper.toOrdersResponses(orderRepository.findByReporteOrdenesAtendidasStatus2());
 	}
 

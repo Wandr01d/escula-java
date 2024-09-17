@@ -1,7 +1,5 @@
 package pe.com.stefanini.group.escuelajava.service.impl;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,22 +12,22 @@ import pe.com.stefanini.group.escuelajava.persistence.repository.CustomerReposit
 import pe.com.stefanini.group.escuelajava.service.CustomerService;
 
 @Service
-public class CustomerServiceImpl implements CustomerService{
-	
+public class CustomerServiceImpl implements CustomerService {
+
 	@Autowired
 	private CustomerRepository customerRepository;
-	
+
 	@Autowired
 	private CustomerMapper customerMapper;
 
 	@Override
 	public Page<Customer> findAllCustomersToPage(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Page<Customer> customers =  customerRepository.findAll(pageable);
+
+		Page<Customer> customers = customerRepository.findAll(pageable);
 
 		return customers;
 	}
-
 
 	@Override
 	public CustomerResponse findByCustomerId(Integer customerId) {
@@ -40,23 +38,15 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public CustomerResponse saveCustomer(CustomerResponse customerResponse) {
 		Customer customer = customerMapper.toCustomer(customerResponse);
-        return customerMapper.toCustomerResponse(customerRepository.save(customer));
-    }
-	
+		return customerMapper.toCustomerResponse(customerRepository.save(customer));
+	}
+
 	@Override
 	public CustomerResponse updateCustomer(Integer customerId, CustomerResponse customerResponse) {
 		Customer customer = customerRepository.findById(customerId).get();
 		customerMapper.updateCustomer(customer, customerResponse);
 		return customerMapper.toCustomerResponse(customerRepository.save(customer));
-		
+
 	}
-	
-	
-
-	
-	 
-
-	
-	
 
 }
